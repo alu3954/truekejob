@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% block title %} Inicio - Bienvenido {% endblock %}
+{% block content %} 
+<h3>
+<p align=center><i class="icon-headphones"></i><u> Bienvenido a TruekeJob </u><i class="icon-headphones"></i></p></h3> 
+{% if user.is_authenticated %}
+	<p><strong> Bienvenido  {{ user.username }}</strong> </p>
+	{% if user.get_profile.photo %}
+		<img src="/media/{{ user.get_profile.photo }}"  heigth="220px", width="220px", alt="foto usuario">
+	{% endif %}
+	{% if user.get_profile.genero %}
+		<p><strong> Sector: </strong>{{ user.get_profile.genero }} </p> 
+	{% endif %}
+	{% if user.get_profile.vivo %}
+		<p><strong> Vive en: </strong>{{ user.get_profile.vivo }} </p> 
+	{% endif %}
+	
+
+{% else %}
+	<p align=center> Aqui podrás encontrar todo sobre tus <a href="/productos/page/1/" class="btn btn-info">ofertas</a> y truekes en todos los sectores!!! </p><br>
+	
+{% endif %}
+
+{% endblock %}

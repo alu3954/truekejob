@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% block title %} Contactanos {% endblock %}
+{% block content %}
+<h3> <p align=center> Formulario de Contacto </p></h3>
+<p align=left> Rellena nuestro formulario de contacto para cualquier duda o sugerencia que desees hacernos llegar. Nos pondremos en contacto contigo a la mayor brevedad posible!     <i class="icon-envelope"></i></p>
+<br>
+<div class="row">
+	<div class="span6">
+		{% if info_enviado %}
+			Gracias por enviar un comentario, nos pondremos en contacto contigo.
+			<br>
+			La informacion recibida fue la siguiente<br>
+			<p>Email utilizado: {{email}}</p>
+			<p>Titulo: {{titulo}}</p>
+			<p>Texto Citado: </p><br><br><h3>{{texto}}</h3>
+		{% else %}
+			<form action="." method="POST">
+				{% csrf_token %}
+				{{form.as_p}}
+			<button class="btn btn-success" type="submit"><i class="icon-play icon-white"></i> Enviar Comentario </button>
+			</form>
+		{% endif %}
+	</div>
+	<div class="span6">
+		<br>
+		<img src="/media/images/contacto.jpg"/>
+	</div>
+</div>
+{% endblock %}

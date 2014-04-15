@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block title %} Login {% endblock %}
+{% block content %}
+
+<h3> <p align=center> Iniciar Sesión </p></h3>
+<p align=left> Introduce tu <strong>nombre de usuario</strong> y tu <strong>contraseña</strong>. <i class="icon-check"></i></p>
+<br>
+<div class="row">
+	<div class="span6">
+		<form  action="." method="POST">
+			{% csrf_token %}
+			{{ mensaje }}
+			
+			{{ form.as_p }}
+			<button class="btn btn-success"><i class="icon-play icon-white"></i> Acceder </button>	
+		</form>
+	</div>
+	<div class="span6">
+		<br>
+		<img src="/media/images/login.jpeg"/>
+	</div>
+</div>
+
+{% endblock %}

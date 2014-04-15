@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+{% block title %} Lista de ofertas {% endblock %}
+{% block content %}
+<h3> <p align=center> Lista de ofertas </p></h3>
+<p align=left> En este espacio podrás compartir tus ofertas </p>
+<br>
+{% if productos %}
+	<table class="table table-hover">
+		<theader>
+			<tr> 	
+				<th>        </th>
+				<th><b> Sector </b></th>
+				<th> Link </th>
+			</tr>
+		</theader>
+	{% for p in productos %}
+		<tbody>
+			<tr>	
+				<td> <img src="/media/{{ p.imagen }}" width="50px" heigth="50px"/> </td>
+				<td> {{p.nombre}} </td>
+				<td> {{p.link}}    </td>
+				<td><a class="btn" href="/producto/{{p.id}}/"><li class="icon-search"></li> Ver </td>
+				
+				{% if user.is_authenticated %}
+					<td><a class="btn" href="/edit/producto/{{p.id}}"><li class="icon-pencil"></li> Editar </a></td>
+				{% endif%}
+			</tr>
+		</tbody>
+	{% endfor %}
+	</table>
+{% else %}
+	<h2>No existen grupos ahora mismo para descargar :( </h2>
+{% endif %}
+{% if user.is_authenticated %}
+		<a href="{% url "vista_agregar_producto" %}" class="btn btn-primary"><li class="icon-plus"></li> Nuevo productos</a>
+{% endif %}
+{% if productos%}
+	<div class="pagination">
+		<ul>
+		<li><a href="/grupos/page/1"> << </a></li>
+	{% if productos.has_previous %}
+		<li><a href="/grupos/page/{{ productos.previous_page_number }}/"> Prev </a></li>
+	{% else %}
+		<li><a href="#"> Prev </a></li>
+	{% endif %}
+	{% if productos.has_next %}
+		<li><a href="/grupos/page/{{ productos.next_page_number }}/"> Next </a></li>
+	{% else %}
+		<li><a href="#"> Next </a></li>
+	{% endif %}
+		<li><a href="/grupos/page/{{ productos.paginator.num_pages }}"> >> </a></li>
+	</ul>
+	</div>
+	<h4> Pagina {{ productos.number }} de {{ productos.paginator.num_pages }} </h4>
+{% endif %}
+{% endblock %}

@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% block title %} Registrate {% endblock %}
+{% block content %}
+<h3> <p align=center> Formulario de Registro </p></h3>
+<p align=left> Rellena nuestro formulario de registro para formar parte de manera activa de nuestro proyecto. De esta forma podras publicar y editar información y formar parte de nuestra comunidad. <i class="icon-upload"></i></p>
+<br>
+<div class="row">
+	<div class="span6">
+		{% if info_enviado %}
+			Gracias por registrarte en nuestra página!! :D
+			<br>
+			Pronto te haremos llegar un correo con la confirmación de tu cuenta.
+			<br>
+			La informacion recibida fue la siguiente<br>
+			<p>Email: {{email}}</p>
+			<p>Username: {{username}}</p>
+			<p>Password: {{password}}</p>
+			<p>Texto Citado: </p><br><br><h3>{{texto}}</h3>
+		{% else %}
+			<form action="." method="POST">
+				{% csrf_token %}
+				{{form.as_p}}
+			<button class="btn btn-success" type="submit"><i class="icon-play icon-white"></i> Enviar Solicitud </button>
+			</form>
+		{% endif %}
+	</div>
+	<div class="span6">
+		<br><br>
+		<img src="/media/images/registro.jpg"/>
+	</div>
+</div>
+{% endblock %}

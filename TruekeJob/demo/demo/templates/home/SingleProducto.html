@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% block title %} Oferta: {{ grupo.nombre}} {% endblock %}
+{% block content %}
+<h1> {{ grupo.nombre }} </h1>
+<br>
+<div class="row">
+	<div class="span6">
+		<p> Autores: {{ grupo.autor }} </p>
+		<p> Titulo: {{ grupo.titulo }} </p>
+		<p> {{ grupo.descripcion }} </p>
+		<p> Link: {{ grupo.link }}  </p>
+		<p> Cantidad de ofertas: {{ grupo.stock }} ofertas </p>
+		<h5> Sector(s): </h5>
+		{% for cat in categorias %}
+			<span class="label label-info"> {{cat.nombre}} </span>
+		{% endfor %}
+		<br><br>
+		{% if grupo.stock > 1 %}
+			<a href="#" class="btn btn-primary"> Hay mas de una oferta </a>
+		{% endif %}
+		<!-- Regresa a la pagina anterior -->
+		<a href="/grupos/page/1" class="btn btn-primary"> Regresar a la lista de ofertas </a> 
+	</div>
+	<div class="span5">
+		<img src="/media/{{ grupo.imagen }}"/>
+	</div>
+</div>
+{% endblock %}

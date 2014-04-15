@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{% block title %} Agregar oferta {% endblock %}
+{% block content %}
+	<form action="." method="POST" enctype="multipart/form-data">
+		{% csrf_token %}
+		{{ form.as_p }}
+		<button type="submit" class="btn btn-small btn-primary"> Guardar </button>
+		<button type="reset" class="btn btn-small btn-inverse"> Limpiar </button>
+	</form>
+<a href="/productos/page/1" class="btn btn-primary"> Regresar a la lista de ofertas </a>
+<br><br>
+	{{ informacion }}
+{% endblock %}
